@@ -12,22 +12,22 @@ const routes = [
         component: Login,
     },
     {
-        path: '/comma-vote/vote/:id',
+        path: '/comma-vote/vote/:id/',
         name: 'vote',
         component: Vote,
     },
     {
-        path: '/comma-vote/end',
+        path: '/comma-vote/end/',
         name: 'end',
         component: End,
     },
     {
-        path: '/comma-vote/865935',
+        path: '/comma-vote/865935/',
         name: 'admin',
         component: Admin,
     },
     {
-        path: '/comma-vote/:catchAll(.*)',
+        path: '/comma-vote/:catchAll(.*)/',
         component: NotFound,
     }
 ]
