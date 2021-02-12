@@ -7,7 +7,7 @@ import Admin from "@/components/views/Admin.vue"
 
 const routes = [
     {
-        path: '/comma-vote',
+        path: '/comma-vote/',
         name: 'Login',
         component: Login,
     },
