@@ -1,7 +1,10 @@
 <template>
   <div class="admin">
+    <button @click="goToVote">투표로 가기></button>
     <button @click="deleteList">투표 삭제</button>
     <button @click="getList">리스트 불러오기</button>
+
+    <span>학생 수: {{ studentsCount }}</span>
     <table border="1">
       <th>학번</th>
       <th>동아리명</th>
@@ -16,11 +19,14 @@
 <script>
 import adminApi from "@/api/admin";
 import { ref } from "vue";
+import {useRouter} from "vue-router"
 
 export default {
   setup() {
+    const router = useRouter()
     const voteCount = ref(0);
     const values = ref({});
+    const studentsCount = ref(0);
     function getList() {
       console.log("getList");
       adminApi
@@ -28,6 +34,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           values.value = response.data;
+          studentsCount.value = response.data.length;
           voteCount.value = Object.keys(response.data[0]).length - 3;
         })
         .catch((error) => {
@@ -52,7 +59,10 @@ export default {
           });
       }
     }
-    return { getList, deleteList, voteCount, values };
+    function goToVote() {
+      router.push("/comma-vote/")
+    }
+    return { getList, deleteList, voteCount, values, studentsCount, goToVote };
   },
 };
 </script>
