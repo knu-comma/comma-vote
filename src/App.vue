@@ -29,7 +29,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 100px 0px 100px 0px;
+  padding: 30px 0px 30px 0px;
 }
 .input {
   margin: 1rem;
