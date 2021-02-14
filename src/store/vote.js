@@ -7,8 +7,6 @@ export const state = {
 
 export const actions = {
     setVote1({ commit }, payload) {
-        console.log('setVote1');
-        console.log("payload: " + payload.checked);
         commit('mutateVote1', payload.checked);
     },
     setVote2({ commit }, payload) {
@@ -24,8 +22,6 @@ export const actions = {
 
 export const mutations = {
     mutateVote1(state, payload) {
-        console.log('mutateVote1');
-        console.log("payload: " + payload)
         state.vote1 = payload;
     },
     mutateVote2(state, payload) {

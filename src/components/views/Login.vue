@@ -26,7 +26,6 @@ export default {
   name: "Login",
   methods: {
     next() {
-      console.log(this);
     },
   },
   setup() {
@@ -42,20 +41,15 @@ export default {
         clubname.value == "" ||
         username.value == ""
       ) {
-        console.log("fail");
 
         alert("값을 전부 입력해주세요.");
       } else {
-        console.log("success");
         let _studentId = studentId.value;
         let _clubname = clubname.value;
         let _username = username.value;
         store.dispatch("student/setStudentId", { _studentId });
         store.dispatch("student/setClubname", { _clubname });
         store.dispatch("student/setUsername", { _username });
-        let id = store.getters["student/getStudentId"];
-        console.log("loginId: " + id);
-        console.log(_studentId);
         let userinfo = {
           _studentId,
           _clubname,
@@ -63,15 +57,13 @@ export default {
         };
         authApi
           .login(JSON.stringify(userinfo))
-          .then((response) => {
-            console.log(response);
+          .then(() => {
             router.push("/comma-vote/vote/1");
           })
           .catch((error) => {
-            console.log("status: ", error.response.status);
             if (error.response.status == 409) alert("학번이 중복됩니다.");
             else alert("알 수  없는 오류");
-            console.log(error);
+            (error);
           });
       }
     };

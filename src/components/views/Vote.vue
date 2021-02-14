@@ -25,16 +25,16 @@ export default {
     const route = useRoute();
     const store = useStore();
     const checkedRef = ref("");
+    const maxId = 2;
     const votes = [];
     const submit = () => {
-      console.log("submit");
       if (checkedRef.value) {
         let id = parseInt(route.params.id);
         let checked = checkedRef.value;
         let nextId = id + 1;
         votes.push(checked);
         store.dispatch("vote/setVote" + id, { checked });
-        if (nextId < 5) {
+        if (nextId > maxId) {
           router.push(String(nextId));
         } else {
           let studentid = store.getters["student/getStudentId"];
@@ -45,24 +45,11 @@ export default {
             clubname: clubname,
             username: username,
           };
-          console.log("start");
           for (var i = 0; i < votes.length; i++) {
-            console.log(i + ": " + votes[i]);
             userinfo["vote" + String(parseInt(i) + 1)] = votes[i];
           }
-          // const json = JSON.parse(data);
-          // console.log("json: " + json);
-
           voteApi
             .submitVote(userinfo)
-            .then((response) => {
-              console.log(response);
-              console.log("params: " + response.data);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-
           router.push({
             name: "end",
             query: {},
